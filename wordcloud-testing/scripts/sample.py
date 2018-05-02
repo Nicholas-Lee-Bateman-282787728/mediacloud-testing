@@ -19,11 +19,11 @@ def main(topic, n_samples):
     'vaccines':'vaccin* and timespans_id:9596',
     'us_election': '+( fiorina ( scott and walker ) ( ben and carson ) trump ( cruz and -victor ) kasich rubio (jeb and bush) clinton sanders ) AND timespans_id:80252',
     'deep_state': '("deep state") NOT (erdogan or turk* or egypt* or morsi or syria* or pakistan* or shock or depression) AND timespans_id:186103',
-    'community_policing': '("Community policing" OR "community-oriented policing" OR "neighborhood policing" OR "Safer Neighbourhood Team*" AND timespans_id:180716',
+    'community_policing': '"Community policing" OR "community-oriented policing" OR "neighborhood policing" OR "Safer Neighbourhood Team*" AND timespans_id:180716',
     'gun_violence':'gun* AND (shoot* OR violence OR death* OR dead OR control OR "bear arms" OR "second amendment") AND timespans_id=183049',
     'teen_pregnancy':'( sentence: ( "babies having babies" "kids having kids" "children having children" "teen mother" "teen mothers" "teen father" "teen fathers" "teen parent" "teen parents" "adolescent mother" "adolescent mothers" "adolescent father" "adolescent fathers" "adolescent parent" "adolescent parents" ( ( /teen(ager)?s?/ adolescent students? "high school" "junior school" "middle school" "jr school" ) and -( /(grad(uate)?|doctoral|law|medical)/ and /students?/ ) and ( pregnant pregnancy "birth rate" births ) ) ) or title: ( "kids having kids" "children having children" "teen mother" "teen mothers" "teen father" "teen fathers" "teen parent" "teen parents" "adolescent mother" "adolescent mothers" "adolescent father" "adolescent fathers" "adolescent parent" "adolescent parents" ( ( /teen(ager)?s?/ adolescent students? "high school" "junior school" "middle school" "jr school" ) and -( /(grad(uate)?|doctoral|law|medical)/ and /students?/ ) and ( pregnant pregnancy "birth rate" births ) ) ) ) AND timespans_id=8938',
     'network_neutrality':'+((net OR network) AND neutrality) AND timespans_id=17212',
-    'climate_change':'("climate change" OR "global warming") AND timespans_id=149406'
+    'climate_change':'"climate change" OR "global warming" AND timespans_id=149406'
     }
 
 
@@ -36,7 +36,7 @@ def main(topic, n_samples):
 
     for N in [1000, 10000, 100000]:
          print("\n\n","N",N)
-         pathlib.Path('../data/sampling10/' + topic + '/' + str(N)).mkdir(parents=True, exist_ok=True) 
+         pathlib.Path('../data/sampling/' + topic + '/' + str(N)).mkdir(parents=True, exist_ok=True) 
 
          for m in range(int(n_samples)):
              print("SAMPLE: ", str(m))
