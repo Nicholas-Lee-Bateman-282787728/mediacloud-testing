@@ -11,7 +11,7 @@ import sys
 import pathlib 
 import time
 
-def main(topic):
+def main(topic, n_samples):
     mc = mediacloud.api.MediaCloud('7e5510da993cd51097818a48374dff44495cb251f859ec01d61aaae59284fb6c')
 
     topic_to_query = {'immigration': '+(immigra* OR migrat* OR migrant*) AND +(US OR "united states") and timespans_id:93598',
@@ -36,12 +36,12 @@ def main(topic):
 
     for N in [1000, 10000, 100000]:
          print("\n\n","N",N)
-         pathlib.Path('../data/sampling/' + topic + '/' + str(N)).mkdir(parents=True, exist_ok=True) 
+         pathlib.Path('../data/sampling10/' + topic + '/' + str(N)).mkdir(parents=True, exist_ok=True) 
 
-         for m in range(10):
+         for m in range(int(n_samples)):
              print("SAMPLE: ", str(m))
              start_s = time.time()
-             sample = mc.wordCount(q, sample_size=N, random seed=m)
+             sample = mc.wordCount(q, sample_size=N, random_seed=m)
              print("TIME FOR API: ", str(time.time() - start_s), " SEC")
              path = '../data/sampling/'+ topic + "/" + str(N) + "/sample" + str(m) + ".csv"
              print(path)
@@ -52,6 +52,6 @@ def main(topic):
     print(q)
 
 if __name__ == "__main__":
-    main(sys.argv[1])
+    main(sys.argv[1], sys.argv[2])
 
 
