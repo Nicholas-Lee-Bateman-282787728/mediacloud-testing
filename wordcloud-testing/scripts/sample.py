@@ -30,20 +30,21 @@ def main(topic, n_samples):
     q = topic_to_query[topic]
 
     # Make directory if it doesn't exist
-    pathlib.Path('../data/sampling-100k/' + topic).mkdir(parents=True, exist_ok=True) 
+    pathlib.Path('../data/sampling-100/' + topic).mkdir(parents=True, exist_ok=True) 
 
     start = time.time()
 
-    for N in [1000, 10000, 100000]:
+    for N in [1000, 10000]:
+    #for N in [1000, 10000, 100000]:
          print("\n\n","N",N)
-         pathlib.Path('../data/sampling-100k/' + topic + '/' + str(N)).mkdir(parents=True, exist_ok=True) 
+         pathlib.Path('../data/sampling-100/' + topic + '/' + str(N)).mkdir(parents=True, exist_ok=True) 
 
          for m in range(int(n_samples)):
              print("SAMPLE: ", str(m))
              start_s = time.time()
              sample = mc.wordCount(q, sample_size=N, random_seed=m, num_words=100000)
              print("TIME FOR API: ", str(time.time() - start_s), " SEC")
-             path = '../data/sampling-100k/'+ topic + "/" + str(N) + "/sample" + str(m) + ".csv"
+             path = '../data/sampling-100/'+ topic + "/" + str(N) + "/sample" + str(m) + ".csv"
              print(path)
              pandas.read_json(json.dumps(sample), orient='records').to_csv(path)
             
